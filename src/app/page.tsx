@@ -1,6 +1,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 export const runtime = 'edge'
+export const dynamic = 'force-dynamic'
 import DeputadoDashboard from "@/components/dashboards/DeputadoDashboard";
 import LiderancaDashboard from '@/components/dashboards/LiderancaDashboard';
 import AssessoriaDashboard from '@/components/dashboards/AssessoriaDashboard';
@@ -42,8 +43,8 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ [
   }
 
   return (
-    <MainLayout 
-      role={perfil.role} 
+    <MainLayout
+      role={perfil.role}
       userName={perfil.nome}
       activePath="/"
     >

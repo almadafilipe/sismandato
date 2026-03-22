@@ -5,6 +5,7 @@ import MainLayout from '@/components/layout/MainLayout'
 import { getMunicipios } from '@/lib/supabase/api'
 
 export const runtime = 'edge';
+export const dynamic = 'force-dynamic';
 
 export default async function AssessoriaPage() {
   const supabase = await createClient()
