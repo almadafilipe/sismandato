@@ -7,7 +7,7 @@ import { getMunicipios } from '@/lib/supabase/api'
 export default async function AssessoriaPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
-  
+
   if (!user) redirect('/login')
 
   const [
@@ -21,9 +21,9 @@ export default async function AssessoriaPage() {
   if (perfilRes.data?.role !== 'assessoria') redirect('/')
 
   return (
-    <MainLayout 
-      role={perfilRes.data?.role} 
-      userName={perfilRes.data?.nome} 
+    <MainLayout
+      role={perfilRes.data?.role}
+      userName={perfilRes.data?.nome}
       activePath="/assessoria"
     >
       <MunicipiosManagement municipios={municipiosRes.data || []} />
