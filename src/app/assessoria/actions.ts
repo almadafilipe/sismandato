@@ -39,6 +39,7 @@ export async function updateUserProfile(userId: string, targetRole: 'deputado' |
     .from('perfis')
     .update({ 
       role: targetRole,
+      status: 'aprovado',
       municipio_id: safeMunicipioId
     })
     .eq('id', userId);

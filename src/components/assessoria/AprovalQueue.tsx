@@ -11,7 +11,10 @@ export default async function AprovalQueue() {
   const contatos = (contatosRes.data || []) as any[];
   const perfis = (perfisRes.data || []) as any[];
   
-  if (contatos.length === 0 && perfis.length === 0) {
+  // Filtragem extra caso o banco retorne perfis que não são realmente pendentes
+  const perfisRealmentePendentes = perfis.filter(p => p.status === 'pendente');
+
+  if (contatos.length === 0 && perfisRealmentePendentes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-muted/40 text-center">
         <CheckCircle className="w-12 h-12 mb-4 opacity-10" />
@@ -24,12 +27,12 @@ export default async function AprovalQueue() {
   return (
     <div className="space-y-8">
       {/* Seção de Novos Usuários (Acesso ao Sistema) */}
-      {perfis.length > 0 && (
+      {perfisRealmentePendentes.length > 0 && (
         <div className="space-y-3">
           <h3 className="text-[10px] font-black uppercase tracking-[0.3em] text-accent px-2 flex items-center gap-2">
             <ShieldAlert className="w-3 h-3" /> Solicitações de Acesso
           </h3>
-          {perfis.map((perfil) => (
+          {perfisRealmentePendentes.map((perfil) => (
             <div key={perfil.id} className="vibe-card p-4! border-accent/20 bg-accent/2 flex flex-col md:flex-row justify-between items-center gap-4 animate-fadeIn">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-accent text-bg flex items-center justify-center shadow-lg">

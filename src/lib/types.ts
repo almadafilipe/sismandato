@@ -23,6 +23,7 @@ export interface Perfil {
   id: string; // uuid
   nome?: string | null;
   role: UserRole;
+  status?: string | null;
   municipio_id?: string | null; // uuid
 }
 
