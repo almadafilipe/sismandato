@@ -46,8 +46,12 @@ export default function UserManagement({
     try {
       setIsSaving(true);
       const targetMunicipio = editRole === 'lideranca' ? (editMunicipio || null) : null;
-      await updateUserProfile(userId, editRole, targetMunicipio);
+      const result = await updateUserProfile(userId, editRole, targetMunicipio);
       
+      if (!result.success) {
+        throw new Error(result.error);
+      }
+
       setLocalPerfis(prev => prev.map(p => {
         if (p.id === userId) {
           const m = municipios.find(m => m.id === targetMunicipio);

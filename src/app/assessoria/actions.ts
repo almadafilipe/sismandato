@@ -35,21 +35,27 @@ export async function updateUserProfile(userId: string, targetRole: 'deputado' |
   // Validate the inputs (if not lideranca, municipio should be null)
   const safeMunicipioId = targetRole === 'lideranca' ? targetMunicipioId : null;
 
-  const { error } = await supabase
-    .from('perfis')
-    .update({ 
-      role: targetRole,
-      status: 'aprovado',
-      municipio_id: safeMunicipioId
-    })
-    .eq('id', userId);
+  try {
+    const { error } = await supabase
+      .from('perfis')
+      .update({ 
+        role: targetRole,
+        status: 'aprovado',
+        municipio_id: safeMunicipioId
+      })
+      .eq('id', userId);
 
-  if (error) {
-    console.error(`Erro ao atualizar perfil:`, error);
-    throw new Error('Falha ao atualizar dados do usuário.');
+    if (error) {
+       console.error(`Erro Supabase ao atualizar perfil:`, error);
+       return { success: false, error: error.message };
+    }
+
+    revalidatePath('/'); // Revalida o dashboard principal
+    return { success: true };
+  } catch (e: any) {
+    console.error(`Erro interno ao atualizar perfil:`, e);
+    return { success: false, error: e.message || 'Erro interno inesperado' };
   }
-
-  revalidatePath('/'); // Revalida o dashboard principal
 }
 
 export async function createMunicipio(nome: string, regiao?: string, populacao?: number) {
