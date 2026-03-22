@@ -10,7 +10,7 @@ Este é um web app construído para um deputado estadual da Bahia e sua equipe, 
 - **Backend & Banco de Dados:** Supabase (PostgreSQL + Auth + Storage)
 - **Estilização:** Tailwind CSS
 - **PWA:** `next-pwa` para geração de service worker e manifesto.
-- **Hosting:** Vercel (frontend) + Supabase (backend).
+- **Hosting:** Cloudflare Pages (frontend) + Supabase (backend).
 
 ## 3. Setup e Instalação
 
@@ -61,10 +61,10 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver a 
 
 ## 4. Deploy
 
-- **Frontend (Next.js):** O projeto está configurado para deploy fácil na [Vercel](https://vercel.com/). Conecte seu repositório Git à Vercel e ela fará o build e deploy automaticamente. Não se esqueça de adicionar as variáveis de ambiente (`NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`) nas configurações do projeto na Vercel.
+- **Frontend (Next.js):** O projeto está configurado para deploy automático no **Cloudflare Pages**. O build utiliza o adaptador `@cloudflare/next-on-pages` para suportar o Next.js 16 no Edge Runtime. Certifique-se de adicionar as variáveis de ambiente (`NEXT_PUBLIC_SUPABASE_URL` e `NEXT_PUBLIC_SUPABASE_ANON_KEY`) e ativar a flag `nodejs_compat` no painel da Cloudflare.
 - **Backend (Supabase):** O Supabase já está na nuvem.
 
-**URL do Deploy:** `[Ainda não implantado]`
+**URL do Deploy:** [https://sistemandato.pages.dev/](https://sistemandato.pages.dev/)
 
 ## 5. Histórico de Desenvolvimento (Changelog)
 
@@ -83,3 +83,4 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver a 
     - Gestão de Equipe (cadastro de Lideranças).
     - **NOVO:** Painel de administração de dados dinâmico (`/assessoria/municipio/[id]`) com CRUD completo (Server Actions) focado em injetar e editar as 6 entidades vitais do dossiê: Emendas, Obras, Eventos, Notas, Pendências e Políticos.
 - **PWA:** Configuração básica do `next-pwa` com `manifest.json` e headers no layout para tornar o app instalável.
+- **Correção de Erros & Migração (Cloudflare):** Resolvido o erro 500 no deploy (timeout/configuração do Supabase) e migrado do Netlify para o Cloudflare Pages visando melhores limites de cota e performance no Edge Runtime.
