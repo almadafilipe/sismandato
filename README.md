@@ -94,5 +94,8 @@ Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver a 
 - **Refinamento Visual "UI Pro Max":**
     - Aplicação rigorosa do tema Beige/PT Red em todos os componentes de detalhes (`EmendasTab`, `ContatosTab`).
     - **Layout Compacto:** Redução da largura da sidebar para 220px, diminuição de paddings globais (de 48px para 32px) e ajuste de densidade em todas as listas e cards para um visual mais executivo e denso.
-    - Correção de tipagem TypeScript (`any`/`unknown`) em todo o fluxo de dados para maior estabilidade.
+    - **Layout Flutuante (Premium):** Implementação de `gap` e `padding` no container principal para criar uma separação elegante entre sidebar e corpo. Ambos os elementos agora operam como cards independentes com cantos `rounded-3xl` e efeito `glass`.
+    - **Divisão Lógica de Dashboards:** Separação entre a visão de "Inteligência Estratégica" (`/`) e a "Gestão Territorial de Municípios" (`/assessoria`), garantindo que cada menu lateral tenha um propósito único e funcional.
+    - Correção de visibilidade: Substituição de `text-white` por `text-accent` em todo o portal administrativo para compatibilidade total com o fundo bege.
+    - Correção de tipagem TypeScript (`any`/`unknown`) em todo o fluxo de dados para maior estabilidade técnica.
 - **Correção de Erros & Migração (Cloudflare):** Resolvido o erro 500 no deploy (timeout/configuração do Supabase) e migrado do Netlify para o Cloudflare Pages visando melhores limites de cota e performance no Edge Runtime.
