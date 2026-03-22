@@ -4,6 +4,8 @@ import MunicipiosManagement from '@/components/assessoria/MunicipiosManagement'
 import MainLayout from '@/components/layout/MainLayout'
 import { getMunicipios } from '@/lib/supabase/api'
 
+export const runtime = 'edge';
+
 export default async function AssessoriaPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
