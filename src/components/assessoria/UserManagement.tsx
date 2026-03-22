@@ -38,6 +38,11 @@ export default function UserManagement({
   };
 
   const handleSave = async (userId: string) => {
+    if (editRole === 'lideranca' && !editMunicipio) {
+      alert('Atenção: Para o nível de Líder, é obrigatório selecionar um Município.');
+      return;
+    }
+
     try {
       setIsSaving(true);
       const targetMunicipio = editRole === 'lideranca' ? (editMunicipio || null) : null;
@@ -57,8 +62,8 @@ export default function UserManagement({
       }));
       setEditingId(null);
     } catch (err) {
-      console.error(err);
-      alert('Erro ao salvar o perfil.');
+      console.error("Erro ao salvar perfil:", err);
+      alert('Falha ao salvar: ' + (err instanceof Error ? err.message : 'Erro desconhecido no servidor'));
     } finally {
       setIsSaving(false);
     }
