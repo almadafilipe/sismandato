@@ -34,7 +34,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Dossiê Municipal" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#0f1117" />
+        <meta name="theme-color" content="#ebe5b2" />
       </head>
       <body>{children}</body>
     </html>
