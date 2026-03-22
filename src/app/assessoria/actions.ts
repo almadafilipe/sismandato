@@ -58,6 +58,17 @@ export async function updateUserProfile(userId: string, targetRole: 'deputado' |
   }
 }
 
+/**
+ * Versão compatível com formulários de servidor (Server Components)
+ * que não suportam objetos de retorno complexos diretamente no atributo 'action'.
+ */
+export async function approveUserFormAction(userId: string) {
+  const result = await updateUserProfile(userId, 'deputado', null);
+  if (!result.success) {
+    throw new Error(result.error);
+  }
+}
+
 export async function createMunicipio(nome: string, regiao?: string, populacao?: number) {
   const supabase = await createClient();
 

@@ -1,6 +1,6 @@
 import { getContatosPendentes, getPerfisPendentes } from "@/lib/supabase/api";
-import { approveContact, rejectContact, updateUserProfile } from "@/app/assessoria/actions";
-import { Check, X, User, MapPin, CheckCircle, ShieldAlert } from "lucide-react";
+import { approveContact, rejectContact, approveUserFormAction } from "@/app/assessoria/actions";
+import { User, MapPin, CheckCircle, ShieldAlert } from "lucide-react";
 
 export default async function AprovalQueue() {
   const [contatosRes, perfisRes] = await Promise.all([
@@ -44,7 +44,7 @@ export default async function AprovalQueue() {
                 </div>
               </div>
               <div className="flex gap-2 w-full md:w-auto">
-                <form action={updateUserProfile.bind(null, perfil.id, 'deputado', null)} className="flex-1 md:flex-none">
+                <form action={approveUserFormAction.bind(null, perfil.id)} className="flex-1 md:flex-none">
                   <button type="submit" className="w-full flex items-center justify-center gap-2 text-[10px] font-bold uppercase tracking-widest py-2 px-4 rounded-lg bg-accent text-bg hover:opacity-80 transition-all">
                     Aprovar
                   </button>
