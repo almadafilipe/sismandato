@@ -127,6 +127,22 @@ export async function getAdminDashboardStats() {
 }
 
 /**
+ * Busca perfis de usuários com status pendente.
+ */
+export async function getPerfisPendentes() {
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from('perfis')
+    .select('*')
+    .eq('status', 'pendente');
+
+  if (error) {
+    console.error("Erro ao buscar perfis pendentes:", error);
+  }
+  return { data, error };
+}
+
+/**
  * Fetches all contacts with 'pendente' status for the approval queue.
  * Joins with perfis and municipios to get sender and city names.
  */
